@@ -28,6 +28,14 @@ namespace AngularBlogCore.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(opt =>
+            {
+                opt.AddDefaultPolicy(x =>
+                {
+                    x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+                    
+                });
+            });
             services.AddDbContext<UdemyAngularBlogDBContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultSqlConnectionString"));
@@ -48,6 +56,10 @@ namespace AngularBlogCore.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AngularBlogCore.API v1"));
             }
+
+            app.UseCors();
+
+            app.UseStaticFiles();
 
             app.UseHttpsRedirection();
 
