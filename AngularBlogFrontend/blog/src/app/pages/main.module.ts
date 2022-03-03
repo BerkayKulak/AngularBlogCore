@@ -7,9 +7,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from '../app-routing.module';
 import { ComponentsModule } from '../components/components.module';
+import { MainLayoutComponent } from '../layout/main-layout/main-layout.component';
+import { MainNavComponent } from '../nav/main-nav/main-nav.component';
 
 @NgModule({
-  declarations: [HomeComponent, AboutMeComponent, ContactComponent],
+  declarations: [MainLayoutComponent,MainNavComponent,HomeComponent, AboutMeComponent, ContactComponent],
   imports: [
     CommonModule,
     BrowserModule,
