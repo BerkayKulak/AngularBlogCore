@@ -13,6 +13,7 @@ export class ArticlesComponent implements OnInit {
   @Input() page: number;
   @Input() pageSize: number;
 
+  default_article: string = 'assets/article_empty.png';
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {}

@@ -1,4 +1,32 @@
-<div></div>
+<div *ngIf="articles.length > 0; else emptyTemplate">
+  <div
+    *ngFor="
+      let item of articles
+        | paginate
+          : {
+              itemsPerPage: pageSize,
+              currentPage: page,
+              totalItems: totalCount
+            }
+    "
+  >
+    <ng-container
+      *ngTemplateOutlet="
+        horizontalTemplate;
+        context: {
+          id: item.id,
+          commentCount: item.commentCount,
+          viewCount: item.viewCount,
+          categoryName: item.category.name,
+          publishDate: item.publishDate,
+          contentSummary: item.contentSummary,
+          title: item.title,
+          picture: item.picture
+        }
+      "
+    ></ng-container>
+  </div>
+</div>
 
 <ng-template #emptyTemplate>
   <div class="alert alert-danger" role="alert">Makale Bulunamadı</div>
@@ -15,11 +43,11 @@
   let-picture="picture"
   #horizontalTemplate
 >
-  <div class="card bg-light border-primary">
+  <div class="card bg-light border-primary mb-3">
     <div class="card-body">
       <div class="row">
         <div class="col-md-4">
-          <img [src]="picture" />
+          <img [src]="picture || default_article" class="card-img" />
         </div>
         <div class="col-md-8">
           <h5 class="card-title">{{ title }}</h5>
