@@ -17,7 +17,7 @@ export class ArticlesComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  pageChange(event) {
+  pageChanged(event) {
     this.page = event;
     this.router.navigateByUrl(`/sayfa/${this.page}`);
   }
