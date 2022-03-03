@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AngularBlogCore.API.Models;
+using AngularBlogCore.API.Responses;
 
 namespace AngularBlogCore.API.Controllers
 {
@@ -26,6 +27,50 @@ namespace AngularBlogCore.API.Controllers
         {
             return await _context.Articles.ToListAsync();
         }
+
+        [HttpGet("{page}/{pageSize}")]
+        public IActionResult GetArticle(int page = 1, int pageSize = 5)
+        {
+            try
+            {
+                IQueryable<Article> query;
+
+                query = _context.Articles.Include(x => x.Category).
+                    Include(y=>y.Comments).OrderByDescending(z=>z.PublishDate);
+
+                int totalCount = query.Count();
+
+                var articlesResponse = query.Skip(((pageSize * (page - 1)))).
+                    Take(5).ToList().Select(x=>new ArticleResponse()
+                    {
+                        Id = x.Id,
+                        Title = x.Title,
+                        ContentMain = x.ContentMain,
+                        ContentSummary = x.ContentSummary,
+                        Picture = x.Picture,
+                        ViewCount = x.ViewCount,
+                        CommentCount = x.Comments.Count,
+                        Category =new CategoryResponse(){Id = x.Category.Id,Name = x.Category.Name}
+                    
+                    
+                    });
+
+                var result = new
+                {
+                    TotalCount = totalCount,
+                    Articles = articlesResponse
+                };
+
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            
+        }
+
 
         // GET: api/Articles/5
         [HttpGet("{id}")]
