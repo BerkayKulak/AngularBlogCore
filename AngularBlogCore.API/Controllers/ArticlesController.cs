@@ -31,6 +31,7 @@ namespace AngularBlogCore.API.Controllers
         [HttpGet("{page}/{pageSize}")]
         public IActionResult GetArticle(int page = 1, int pageSize = 5)
         {
+            System.Threading.Thread.Sleep(1500);
             try
             {
                 IQueryable<Article> query;

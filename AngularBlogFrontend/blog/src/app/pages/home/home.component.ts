@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   articles: Article[];
   totalCount: number;
   pageSize: number = 5;
-
+  loadingItem: number = 5;
   constructor(
     private articleService: ArticleService,
     private router: Router,
@@ -25,6 +25,13 @@ export class HomeComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       if (params.get('page')) {
         this.page = Number(params.get('page'));
+      }
+      if (this.totalCount > 0) {
+        if (this.totalCount >= this.page * this.pageSize) {
+          this.loadingItem = 5;
+        } else {
+          this.loadingItem = this.totalCount - (this.page - 1) * this.pageSize;
+        }
       }
       this.articles = [];
       this.totalCount = 0;
