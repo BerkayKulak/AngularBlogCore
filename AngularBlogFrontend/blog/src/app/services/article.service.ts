@@ -22,6 +22,16 @@ export class ArticleService {
     );
   }
 
+  getSearchArticles(searchText: string, page: number, pageSize: number) {
+    let api = `${this.apiUrl}/SearchArticles/${searchText}/${page}/${pageSize}`;
+
+    return this.httpClient.get<ArticlePg>(api).pipe(
+      tap((x) => {
+        this.loading = false;
+      })
+    );
+  }
+
   getArticlesWithCategory(categoryId: number, page: number, pageSize: number) {
     let api = `${this.apiUrl}/GetArticlesWithCategory/${categoryId}/${page}/${pageSize}`;
 
