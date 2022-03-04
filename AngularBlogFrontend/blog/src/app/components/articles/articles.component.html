@@ -98,7 +98,7 @@
         <i class="fa fa-comment"></i> {{ commentCount }}
       </span>
       <a
-        [routerLink]="['/makale', id]"
+        [routerLink]="['/makale', title | urlformat, id]"
         class="btn btn-primary btn-sm float-right"
         >Devamını Oku</a
       >

@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { AdminNavComponent } from './nav/admin-nav/admin-nav.component';
 
+
 @NgModule({
   declarations: [AppComponent, AdminLayoutComponent, AdminNavComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, MainModule],
