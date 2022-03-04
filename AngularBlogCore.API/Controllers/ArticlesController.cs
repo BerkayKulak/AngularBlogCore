@@ -76,6 +76,8 @@ namespace AngularBlogCore.API.Controllers
         }
 
 
+        [HttpGet]
+        [Route("GetArticleWithCategory/{categoryId}/{page}/{pageSize}")]
         public IActionResult GetArticleWithCategory(int categoryId, int page = 1, int pageSize = 5)
         {
             IQueryable<Article> query = _context.Articles.
@@ -84,7 +86,14 @@ namespace AngularBlogCore.API.Controllers
                 .Where(z => z.CategoryId == categoryId).
                 OrderByDescending(x => x.PublishDate);
 
-            var queryResult = ArticlePagination(query,page,pageSize)
+            var queryResult = ArticlePagination(query, page, pageSize);
+            var result = new
+            {
+                TotalCount = queryResult.Item2,
+                Articles = queryResult.Item1
+            };
+
+            return Ok(result);
         }
 
 
@@ -188,7 +197,7 @@ namespace AngularBlogCore.API.Controllers
             return _context.Articles.Any(e => e.Id == id);
         }
 
-        public System.Tuple<IEnumerable<ArticleResponse>, int> ArticlePagination(IQueryable<Article> query, int page,
+        private System.Tuple<IEnumerable<ArticleResponse>, int> ArticlePagination(IQueryable<Article> query, int page,
             int pageSize)
         {
             int totalCount = query.Count();
