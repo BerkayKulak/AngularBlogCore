@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Article } from 'src/app/models/article';
 import { ArticleService } from 'src/app/services/article.service';
@@ -8,12 +8,18 @@ import { ArticleService } from 'src/app/services/article.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+  ngOnDestroy(): void {
+    if (this.ajax != null) {
+      this.ajax.unsubscribe();
+    }
+  }
   page: number = 1;
   articles: Article[];
   totalCount: number;
   pageSize: number = 5;
   loadingItem: number = 5;
+  ajax;
   constructor(
     private articleService: ArticleService,
     private router: Router,
@@ -35,7 +41,7 @@ export class HomeComponent implements OnInit {
       }
       this.articles = [];
       this.totalCount = 0;
-      this.articleService
+      this.ajax = this.articleService
         .getArticles(this.page, this.pageSize)
         .subscribe((data) => {
           console.log(data);
