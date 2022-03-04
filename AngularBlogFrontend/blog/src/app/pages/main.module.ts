@@ -12,9 +12,10 @@ import { MainNavComponent } from '../nav/main-nav/main-nav.component';
 import { ContactComponent } from './contact/contact.component';
 import { ArticleComponent } from './article/article.component';
 import { CategoryArticlesComponent } from './category-articles/category-articles.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
-  declarations: [MainLayoutComponent,MainNavComponent,HomeComponent, AboutMeComponent, ContactComponent, ArticleComponent, CategoryArticlesComponent],
+  declarations: [MainLayoutComponent,MainNavComponent,HomeComponent, AboutMeComponent, ContactComponent, ArticleComponent, CategoryArticlesComponent, SearchComponent],
   imports: [
     CommonModule,
     BrowserModule,
