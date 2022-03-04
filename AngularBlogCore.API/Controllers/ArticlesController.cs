@@ -76,26 +76,23 @@ namespace AngularBlogCore.API.Controllers
         }
 
 
+        //localhost/api/articles/GetArticlesWithCategory/2/1/5
         [HttpGet]
-        [Route("GetArticleWithCategory/{categoryId}/{page}/{pageSize}")]
-        public IActionResult GetArticleWithCategory(int categoryId, int page = 1, int pageSize = 5)
+        [Route("GetArticlesWithCategory/{categoryId}/{page}/{pageSize}")]
+        public IActionResult GetArticlesWithCategory(int categoryId, int page = 1, int pageSize = 5)
         {
-            IQueryable<Article> query = _context.Articles.
-                Include(x => x.Category).
-                Include(y => y.Comments)
-                .Where(z => z.CategoryId == categoryId).
-                OrderByDescending(x => x.PublishDate);
+            System.Threading.Thread.Sleep(1500);
+            IQueryable<Article> query = _context.Articles.Include(x => x.Category).Include(y => y.Comments).Where(z => z.CategoryId == categoryId).OrderByDescending(x => x.PublishDate);
 
             var queryResult = ArticlePagination(query, page, pageSize);
+
             var result = new
             {
                 TotalCount = queryResult.Item2,
                 Articles = queryResult.Item1
             };
-
             return Ok(result);
         }
-
 
 
         // GET: api/Articles/5
