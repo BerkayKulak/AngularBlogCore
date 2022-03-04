@@ -219,7 +219,7 @@ namespace AngularBlogCore.API.Controllers
             int totalCount = query.Count();
 
             var articlesResponse = query.Skip(((pageSize * (page - 1)))).
-                Take(5).ToList().Select(x => new ArticleResponse()
+                Take(pageSize).ToList().Select(x => new ArticleResponse()
                 {
                     Id = x.Id,
                     Title = x.Title,
