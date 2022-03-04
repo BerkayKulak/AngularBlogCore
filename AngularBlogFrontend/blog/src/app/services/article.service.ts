@@ -24,6 +24,10 @@ export class ArticleService {
 
   getArticle(id: number) {
     let api = `${this.apiUrl}/${id}`;
-    return this.httpClient.get<Article>(this.apiUrl);
+    return this.httpClient.get<Article>(api).pipe(
+      tap((x) => {
+        this.loading = false;
+      })
+    );
   }
 }
