@@ -33,6 +33,21 @@ export class ContactComponent implements OnInit {
     });
   }
 
+  GetValidationMessages(f: AbstractControl, name: string) {
+    if (f.errors) {
+      for (let errroName in f.errors) {
+        if (errroName == 'required') return `${name} alanı boş bırakılamaz`;
+        else if (errroName == 'email') return `email formatı yanlış`;
+        else if (errroName == 'minlength')
+          return `${name} alanız en az 5 karakter olmalıdır.`;
+      }
+    }
+  }
+
+  get getControls() {
+    return this.contactForm.controls;
+  }
+
   onsubmit() {
     if (this.contactForm.valid) {
       this.loading = true;
