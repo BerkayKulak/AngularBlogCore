@@ -94,6 +94,25 @@ namespace AngularBlogCore.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("SearchArticles/{searchText}/{page}/{pageSize}")]
+        public IActionResult SearchArticles(string searchText, int page = 1, int pageSize = 5)
+        {
+            IQueryable<Article> query;
+
+            query = _context.Articles.Include(x => x.Category).Include(y => y.Comments).Where(z => z.Title.Contains(searchText)).OrderByDescending(f => f.PublishDate);
+
+            var resultQuery = ArticlePagination(query, page, pageSize);
+
+            var result = new
+            {
+                Articles = resultQuery.Item1,
+                TotalCount = resultQuery.Item2
+            };
+            
+            return Ok(result);
+        }
+
 
         // GET: api/Articles/5
         [HttpGet("{id}")]
