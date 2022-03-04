@@ -7,6 +7,7 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ArticleComponent } from './pages/article/article.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
       {
         path: 'sayfa/:page',
         component: HomeComponent,
+      },
+      {
+        path:'makale/:id',
+        component:ArticleComponent
       },
       {
         path: 'hakkimda',
