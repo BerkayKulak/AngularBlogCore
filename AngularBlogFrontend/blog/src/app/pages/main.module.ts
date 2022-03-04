@@ -13,9 +13,10 @@ import { ContactComponent } from './contact/contact.component';
 import { ArticleComponent } from './article/article.component';
 import { CategoryArticlesComponent } from './category-articles/category-articles.component';
 import { SearchComponent } from './search/search.component';
+import { ArchiveComponent } from './archive/archive.component';
 
 @NgModule({
-  declarations: [MainLayoutComponent,MainNavComponent,HomeComponent, AboutMeComponent, ContactComponent, ArticleComponent, CategoryArticlesComponent, SearchComponent],
+  declarations: [MainLayoutComponent,MainNavComponent,HomeComponent, AboutMeComponent, ContactComponent, ArticleComponent, CategoryArticlesComponent, SearchComponent, ArchiveComponent],
   imports: [
     CommonModule,
     BrowserModule,
