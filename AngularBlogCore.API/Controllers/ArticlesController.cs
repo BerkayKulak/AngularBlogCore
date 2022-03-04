@@ -113,6 +113,20 @@ namespace AngularBlogCore.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("GetArticlesByMostView")]
+        public IActionResult GetArticlesByMostView()
+        {
+            System.Threading.Thread.Sleep(1500);
+            var articles = _context.Articles.OrderByDescending(x => x.ViewCount).Take(5).Select(x => new ArticleResponse()
+            {
+                Title = x.Title,
+                Id = x.Id
+            });
+
+            return Ok(articles);
+        }
+
 
         // GET: api/Articles/5
         [HttpGet("{id}")]
