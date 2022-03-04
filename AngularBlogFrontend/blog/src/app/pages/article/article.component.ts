@@ -14,7 +14,7 @@ export class ArticleComponent implements OnInit {
   category: Category;
 
   constructor(
-    private articleService: ArticleService,
+    public articleService: ArticleService,
     private route: ActivatedRoute
   ) {}
 

@@ -77,6 +77,8 @@ namespace AngularBlogCore.API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetArticle(int id)
         {
+            System.Threading.Thread.Sleep(1500);
+
             var article = _context.Articles.Include(x => x.Category).
                 Include(y => y.Comments)
                 .FirstOrDefault(z => z.Id == id);
