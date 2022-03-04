@@ -147,6 +147,31 @@ namespace AngularBlogCore.API.Controllers
             return Ok(query);
         }
 
+        [HttpGet]
+        [Route("GetArticleArchiveList/{year}/{month}/{page}/{pageSize}")]
+        public IActionResult GetArticleArchiveList(int year, int month, int page, int pageSize)
+        {
+            System.Threading.Thread.Sleep(1700);
+
+            IQueryable<Article> query;
+            query = _context.Articles.Include(x => x.Category).
+                Include(y => y.Comments).
+                Where(z => z.PublishDate.Year == year && z.PublishDate.Month == month).
+                OrderByDescending(f => f.PublishDate);
+
+            var resultQuery = ArticlePagination(query, page, pageSize);
+
+            var result = new
+            {
+                Articles = resultQuery.Item1,
+                TotalCount = resultQuery.Item2
+            };
+
+            return Ok(result);
+        }
+
+
+
         // GET: api/Articles/5
         [HttpGet("{id}")]
         public IActionResult GetArticle(int id)
