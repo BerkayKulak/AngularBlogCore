@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ArticlePg } from '../models/article-pg';
 import { tap } from 'rxjs/operators';
+import { Article } from '../models/article';
 
 @Injectable({
   providedIn: 'root',
@@ -19,5 +20,10 @@ export class ArticleService {
         this.loading = false;
       })
     );
+  }
+
+  getArticle(id: number) {
+    let api = `${this.apiUrl}/${id}`;
+    return this.httpClient.get<Article>(this.apiUrl);
   }
 }
