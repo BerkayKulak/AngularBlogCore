@@ -8,6 +8,7 @@ import { PageTitleComponent } from './page-title/page-title.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { UrlformatPipe } from '../pipes/urlformat.pipe';
 import { MenuArticleMostViewComponent } from './menu-article-most-view/menu-article-most-view.component';
+import { MenuArchiveComponent } from './menu-archive/menu-archive.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { MenuArticleMostViewComponent } from './menu-article-most-view/menu-arti
     ArticlesComponent,
     UrlformatPipe,
     MenuArticleMostViewComponent,
+    MenuArchiveComponent,
   ],
   imports: [CommonModule, RouterModule, NgxPaginationModule],
   exports: [
@@ -24,6 +26,7 @@ import { MenuArticleMostViewComponent } from './menu-article-most-view/menu-arti
     ArticlesComponent,
     UrlformatPipe,
     MenuArticleMostViewComponent,
+    MenuArchiveComponent,
   ],
 })
 export class ComponentsModule {}
