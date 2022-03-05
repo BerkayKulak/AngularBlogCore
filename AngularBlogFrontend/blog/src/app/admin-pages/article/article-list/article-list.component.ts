@@ -19,17 +19,18 @@ export class ArticleListComponent implements OnInit {
     'publishDate',
     'action',
   ];
-  DataSource;
+  dataSource;
   articles: Article[];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
   constructor(private articleService: ArticleService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.articleService.getArticlesWithoutPg().subscribe((data) => {
       this.articles = data;
-      this.DataSource = new MatTableDataSource<Article>(data);
+      this.dataSource = new MatTableDataSource<Article>(data);
 
-      this.DataSource.paginator = this.paginator;
+      this.dataSource.paginator = this.paginator;
     });
   }
 }
