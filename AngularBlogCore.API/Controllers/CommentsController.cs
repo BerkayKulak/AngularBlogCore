@@ -76,6 +76,9 @@ namespace AngularBlogCore.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Comment>> PostComment(Comment comment)
         {
+            System.Threading.Thread.Sleep(2500);
+            comment.PublishDate = System.DateTime.Now;
+
             _context.Comments.Add(comment);
             await _context.SaveChangesAsync();
 
