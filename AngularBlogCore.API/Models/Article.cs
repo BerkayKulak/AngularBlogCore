@@ -20,7 +20,6 @@ namespace AngularBlogCore.API.Models
         public string Picture { get; set; }
         public int CategoryId { get; set; }
         public int ViewCount { get; set; }
-
         public virtual Category Category { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
     }
