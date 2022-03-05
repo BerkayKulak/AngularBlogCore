@@ -285,7 +285,7 @@ namespace AngularBlogCore.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteArticle(int id)
         {
-            return Ok();
+          
             var article = await _context.Articles.FindAsync(id);
             if (article == null)
             {
