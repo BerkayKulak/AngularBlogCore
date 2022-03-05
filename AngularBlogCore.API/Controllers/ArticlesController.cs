@@ -26,7 +26,7 @@ namespace AngularBlogCore.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Article>>> GetArticles()
         {
-            return await _context.Articles.ToListAsync();
+            return await _context.Articles.OrderByDescending(x=>x.PublishDate).ToListAsync();
         }
 
 
