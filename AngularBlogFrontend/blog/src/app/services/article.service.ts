@@ -27,6 +27,12 @@ export class ArticleService {
     return this.httpClient.get<Article[]>(this.apiUrl);
   }
 
+  saveArticlePicture(image) {
+    return this.httpClient.post<any>(
+      `${this.apiUrl}/SaveArticlePicture`,
+      image
+    );
+  }
 
   getSearchArticles(searchText: string, page: number, pageSize: number) {
     let api = `${this.apiUrl}/SearchArticles/${searchText}/${page}/${pageSize}`;
