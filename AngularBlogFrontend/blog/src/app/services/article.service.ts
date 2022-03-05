@@ -44,6 +44,10 @@ export class ArticleService {
     );
   }
 
+  addArticle(article: Article) {
+    return this.httpClient.post(this.apiUrl, article);
+  }
+  
   getArticlesWithCategory(categoryId: number, page: number, pageSize: number) {
     let api = `${this.apiUrl}/GetArticlesWithCategory/${categoryId}/${page}/${pageSize}`;
 

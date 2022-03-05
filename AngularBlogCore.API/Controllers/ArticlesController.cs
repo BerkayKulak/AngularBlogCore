@@ -264,13 +264,22 @@ namespace AngularBlogCore.API.Controllers
 
         // POST: api/Articles
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // POST: api/Articles
         [HttpPost]
-        public async Task<ActionResult<Article>> PostArticle(Article article)
+        public async Task<IActionResult> PostArticle(Article article)
         {
+            if (article.Category != null)
+            {
+                article.CategoryId = article.Category.Id;
+            }
+            article.Category = null;
+            article.ViewCount = 0;
+            article.PublishDate = DateTime.Now;
+
             _context.Articles.Add(article);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetArticle", new { id = article.Id }, article);
+            return Ok();
         }
 
         // DELETE: api/Articles/5
