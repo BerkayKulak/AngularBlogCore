@@ -24,7 +24,7 @@ import { ListCommentsComponent } from './list-comments/list-comments.component';
     AddCommentComponent,
     ListCommentsComponent,
   ],
-  imports: [CommonModule, RouterModule, NgxPaginationModule,MaterialModule],
+  imports: [CommonModule, RouterModule, NgxPaginationModule, MaterialModule],
   exports: [
     MenuCategoryComponent,
     PageTitleComponent,
@@ -33,6 +33,7 @@ import { ListCommentsComponent } from './list-comments/list-comments.component';
     MenuArticleMostViewComponent,
     MenuArchiveComponent,
     AddCommentComponent,
+    ListCommentsComponent,
   ],
 })
 export class ComponentsModule {}
