@@ -46,11 +46,13 @@ export class AddCommentComponent implements OnInit {
 
       this.commentService.addComment(this.commentForm.value).subscribe(
         (data) => {
+          console.log(data);
           this.success = true;
           this.info = 'Yorumunuz başarıyla eklenmiştir.';
           this.Reload.emit();
         },
         (error) => {
+          console.log(error);
           this.success = false;
           this.info =
             'Bir hata meydana geldi. Lütfen daha sonra tekrar deneyiniz..';
