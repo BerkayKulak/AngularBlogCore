@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ListCommentsComponent } from 'src/app/components/list-comments/list-comments.component';
 import { Article } from 'src/app/models/article';
 import { Category } from 'src/app/models/category';
 import { ArticleService } from 'src/app/services/article.service';
@@ -12,7 +13,7 @@ import { ArticleService } from 'src/app/services/article.service';
 export class ArticleComponent implements OnInit {
   article: Article;
   category: Category;
-
+  listComponent: ListCommentsComponent;
   constructor(
     public articleService: ArticleService,
     private route: ActivatedRoute
@@ -29,5 +30,7 @@ export class ArticleComponent implements OnInit {
       });
     });
   }
-  
+  ReloadCommnetList() {
+    this.listComponent.reLoad();
+  }
 }
