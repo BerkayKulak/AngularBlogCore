@@ -15,6 +15,7 @@ import { CategoryArticlesComponent } from './category-articles/category-articles
 import { SearchComponent } from './search/search.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { MaterialModule } from '../modules/material/material.module';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MaterialModule } from '../modules/material/material.module';
     CategoryArticlesComponent,
     SearchComponent,
     ArchiveComponent,
+    AdminLoginComponent,
   ],
   imports: [
     CommonModule,

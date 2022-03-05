@@ -16,6 +16,7 @@ import { ArticleListComponent } from './admin-pages/article/article-list/article
 import { ArticleUpdateComponent } from './admin-pages/article/article-update/article-update.component';
 import { ArticleAddComponent } from './admin-pages/article/article-add/article-add.component';
 import { ArticleComponent } from './pages/article/article.component';
+import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
 
 const routes: Routes = [
   {
@@ -61,6 +62,10 @@ const routes: Routes = [
       {
         path: 'iletisim',
         component: ContactComponent,
+      },
+      {
+        path: 'adminlogin',
+        component: AdminLoginComponent,
       },
     ],
   },
