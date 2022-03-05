@@ -29,16 +29,15 @@ namespace AngularBlogCore.API.Controllers
 
         // GET: api/Comments/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Comment>> GetComment(int id)
+        public IActionResult GetCommentList(int id)
         {
-            var comment = await _context.Comments.FindAsync(id);
+            var comments = _context.Comments.Where(a => a.ArticleId == id).ToList();
 
-            if (comment == null)
+            if (comments == null)
             {
                 return NotFound();
             }
-
-            return comment;
+            return Ok(comments);
         }
 
         // PUT: api/Comments/5
