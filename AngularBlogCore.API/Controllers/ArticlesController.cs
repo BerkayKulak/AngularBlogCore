@@ -230,18 +230,17 @@ namespace AngularBlogCore.API.Controllers
             return Ok(articleResponse);
 
         }
-
         // PUT: api/Articles/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutArticle(int id, Article article)
         {
-            if (id != article.Id)
-            {
-                return BadRequest();
-            }
+            Article firstArticle = _context.Articles.Find(id);
 
-            _context.Entry(article).State = EntityState.Modified;
+            firstArticle.Title = article.Title;
+            firstArticle.ContentSummary = article.ContentSummary;
+            firstArticle.ContentMain = article.ContentMain;
+            firstArticle.CategoryId = article.Category.Id;
+            firstArticle.Picture = article.Picture;
 
             try
             {

@@ -47,7 +47,7 @@ export class ArticleService {
   addArticle(article: Article) {
     return this.httpClient.post(this.apiUrl, article);
   }
-  
+
   getArticlesWithCategory(categoryId: number, page: number, pageSize: number) {
     let api = `${this.apiUrl}/GetArticlesWithCategory/${categoryId}/${page}/${pageSize}`;
 
@@ -94,5 +94,9 @@ export class ArticleService {
   ArticleViewCountUp(id: number) {
     let api = `${this.apiUrl}/ArticleViewCountUp/${id}`;
     return this.httpClient.get(api);
+  }
+
+  updateArticle(id: number, article: Article) {
+    return this.httpClient.put(`${this.apiUrl}/${id}`, article);
   }
 }
