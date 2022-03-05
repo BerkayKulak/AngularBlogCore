@@ -23,6 +23,11 @@ export class ArticleService {
     );
   }
 
+  getArticlesWithoutPg() {
+    return this.httpClient.get<Article[]>(this.apiUrl);
+  }
+
+
   getSearchArticles(searchText: string, page: number, pageSize: number) {
     let api = `${this.apiUrl}/SearchArticles/${searchText}/${page}/${pageSize}`;
 
